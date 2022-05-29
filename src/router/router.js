@@ -1,7 +1,7 @@
 import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
-import {LandingScreen} from './screen';
+import {CameraScreen, LandingScreen} from './screen';
 const Stack = createStackNavigator();
 
 const StackApp = () => {
@@ -10,6 +10,7 @@ const StackApp = () => {
       initialRouteName="Landing"
       screenOptions={{headerShown: false}}>
       <Stack.Screen name="Landing" component={LandingScreen} />
+      <Stack.Screen name="Camera" component={CameraScreen} />
     </Stack.Navigator>
   );
 };
