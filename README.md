@@ -24,15 +24,15 @@ In the `ios` directory
 * Select an emulator from xcode and press run
 * Or you can run the app by using these commands `react-native run-ios / npm start / npx react-native run-ios` from the project directory
 
-#### APK
+### APK
 
 To download the APK, click [here](https://drive.google.com/file/d/1kQflFfEf0dRxiyDHIUbRFhdFoBhx2opK/view?usp=sharing)
 
-##### Video
+### Video
 App Video, click [here](https://youtu.be/ma487x6NQNE)
 
 
-###### App Screenshot
+### App Screenshot
 
 ![Gallery](https://user-images.githubusercontent.com/21161336/171006635-8e7d48e9-dad8-4615-87bc-bf877a167542.png)
 ![Camera](https://user-images.githubusercontent.com/21161336/171007171-cf266341-610b-4909-b0d0-44b25663a768.png)
