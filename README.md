@@ -1,4 +1,4 @@
-# Movie App
+# Camera App
 
 A mobile application for camera and gallery built using React Native.
 
@@ -36,5 +36,5 @@ App Video, click [here](https://youtu.be/ma487x6NQNE)
 
 ![Gallery](https://user-images.githubusercontent.com/21161336/171006635-8e7d48e9-dad8-4615-87bc-bf877a167542.png)
 ![Camera](https://user-images.githubusercontent.com/21161336/171007171-cf266341-610b-4909-b0d0-44b25663a768.png)
-![Gallery-2]](https://user-images.githubusercontent.com/21161336/171007255-d09e919c-106a-4662-92ea-fff34f3c907e.png)
+![Gallery-2](https://user-images.githubusercontent.com/21161336/171007255-d09e919c-106a-4662-92ea-fff34f3c907e.png)
 ![ImageModal](https://user-images.githubusercontent.com/21161336/171007442-3291eb7b-27d2-46d5-99b6-91a4ea204924.png)
