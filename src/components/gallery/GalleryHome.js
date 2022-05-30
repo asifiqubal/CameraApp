@@ -1,22 +1,73 @@
-import React from 'react';
-import {StyleSheet, Text, View, Dimensions} from 'react-native';
+import React, {useEffect, useRef, useState} from 'react';
+import {
+  StyleSheet,
+  Image,
+  View,
+  FlatList,
+  Dimensions,
+  SafeAreaView,
+} from 'react-native';
 import GalleryFooter from './GalleryFooter';
 import GalleryHeader from './GalleryHeader';
-
+import {useDispatch, useSelector} from 'react-redux';
+import {UpdatePhotoList} from '../../redux/actions/Photo';
+import GalleryPage from './GalleryPage';
 const {width, height} = Dimensions.get('window');
+
 const GalleryHome = ({navigation}) => {
-  console.log(width, height);
+  const imageList = useSelector(state => state.__photos.list);
+  const [currentIndex, SetCurrentIndex] = useState(0);
+  const galleryRef = useRef();
+
+  const dispatch = useDispatch();
+
+  const init = async () => {
+    await dispatch(UpdatePhotoList());
+  };
+  useEffect(() => {
+    init().then().catch();
+  }, []);
+  const handelPageChange = val => {
+    if (currentIndex >= 0 && currentIndex < imageList.length) {
+      // console.log(val);
+      SetCurrentIndex(ps => ps + val);
+    }
+  };
+
+  useEffect(() => {
+    galleryRef?.current?.scrollToOffset({
+      offset: currentIndex * width,
+      animated: true,
+    });
+  }, [currentIndex]);
+  useEffect(() => {
+    SetCurrentIndex(imageList.length - 1);
+  }, [imageList]);
+
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <GalleryHeader navigation={navigation} />
-      <View style={styles.imageContainer}>
-        <View style={styles.imageItem}></View>
-        <View style={styles.imageItem}></View>
-        <View style={styles.imageItem}></View>
-        <View style={styles.imageItem}></View>
-      </View>
-      <GalleryFooter />
-    </View>
+      <FlatList
+        ref={galleryRef}
+        data={imageList}
+        horizontal={true}
+        showsHorizontalScrollIndicator={false}
+        pagingEnabled
+        keyExtractor={(_, i) => i + 1 * Date.now()}
+        renderItem={({item, index}) => <GalleryPage data={item} />}
+        onMomentumScrollEnd={event => {
+          SetCurrentIndex(
+            Math.round(event.nativeEvent.contentOffset.x / width),
+          );
+        }}
+      />
+
+      <GalleryFooter
+        currentPage={currentIndex}
+        totalPage={imageList.length}
+        onChangePage={handelPageChange}
+      />
+    </SafeAreaView>
   );
 };
 
@@ -25,22 +76,6 @@ export default GalleryHome;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-  },
-  imageContainer: {
-    backgroundColor: 'red',
-    flex: 1,
-    marginVertical: 8,
-    marginHorizontal: 12,
-    padding: 6,
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    justifyContent: 'space-evenly',
-  },
-  imageItem: {
-    width: width / 2 - 24,
-    height: height / 2 - 86,
-    backgroundColor: '#fff',
-    marginVertical: 8,
+    backgroundColor: '#000',
   },
 });
